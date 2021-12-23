@@ -1,0 +1,38 @@
+//HSMCMD   JOB (ACCT),MVS,MSGCLASS=H,
+//      NOTIFY=&SYSUID.,CLASS=A,MSGLEVEL=(1,1),TIME=(0,10)
+//MYLIB JCLLIB ORDER=(&SYSUID..MVSG.MVS,
+//            SYS1.SACBCNTL)
+//STEP1    EXEC PGM=IKJEFT01
+//SYSTSPRT DD SYSOUT=*
+//SYSTSIN  DD *
+//*Requesting daily statistics
+HSEND REPORT DAILY                  OUTDATASET('RAYMOND.HSM.DAILY')
+//*Deleting statistics records used as input to the report
+HSEND REPORT DELETE                 OUTDATASET('RAYMOND.HSM.DELETE')
+//*Requesting statistics of activity on or after the specified da
+HSEND REPORT FROMDATE               OUTDATASET('RAYMOND.HSM.FROM')
+//*Requesting statistics by function
+HSEND REPORT FUNCTION               OUTDATASET('RAYMOND.HSM.FUNCTION')
+HSEND REPORT NOFUNCTION             OUTDATASET('RAYMOND.HSM.NOFUNCTI')
+//*Requesting statistics of the backup function
+HSEND REPORT FUNCTION(BACKUP)       OUTDATASET('RAYMOND.HSM.BACKUP')
+//*Requesting statistics of the delete function
+HSEND REPORT FUNCTION(DELETE)       OUTDATASET('RAYMOND.HSM.DELETE')
+//*Requesting statistics of the migration function
+HSEND REPORT FUNCTION(MIGRATION)    OUTDATASET('RAYMOND.HSM.MIGRATE')
+//*Requesting statistics of the recall function
+HSEND REPORT FUNCTION(RECALL)       OUTDATASET('RAYMOND.HSM.RECALL')
+//*Requesting statistics of the recycle function
+HSEND REPORT FUNCTION(RECYCLE)      OUTDATASET('RAYMOND.HSM.RECYCLE')
+//*Requesting statistics of the recovery function
+HSEND REPORT FUNCTION(RECOVER)      OUTDATASET('RAYMOND.HSM.RECOVER')
+//*Requesting statistics of the spill function
+HSEND REPORT FUNCTION(SPILL)        OUTDATASET('RAYMOND.HSM.SPILL')
+//*Requesting statistics of the transition function
+HSEND REPORT FUNCTION(TRANSITION)   OUTDATASET('RAYMOND.HSM.TRANSIT')
+//*Requesting only the totals of the statistics
+HSEND REPORT SUMMARY                OUTDATASET('RAYMOND.HSM.SUMMARY')
+//*Requesting statistics of activity on or before the specified dat
+HSEND REPORT TODATE                 OUTDATASET('RAYMOND.HSM.TODATE')
+//*Requesting volume statistics
+HSEND REPORT VOLUMES                OUTDATASET('RAYMOND.HSM.VOLUMES')
