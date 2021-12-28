@@ -81,13 +81,13 @@
   HSENDCMD LIST DATE                                               +
     OUTDATASET(raymond.HSM.novols)
   HSENDCMD LIST VERSION                                            +
-    OUTDATASET(raymond.HSM.novols)
+    OUTDATASET(raymond.HSM.version)
 //*Listing contents of a set of dump volumes
   HSENDCMD LIST DUMPCONTENTS                                       +
-    OUTDATASET(raymond.HSM.novols)
+    OUTDATASET(raymond.HSM.DUMPCONT)
 //*Listing entries for any data set that has migrated
   HSENDCMD LIST INCLUDEPRIMARY                                     +
-    OUTDATASET(raymond.HSM.novols)
+    OUTDATASET(raymond.HSM.includep)
 //*Examine subdirectories of the specified UNIX file path
   HSENDCMD LIST RECURSE                                            +
     OUTDATASET(raymond.HSM.recurse)
@@ -125,16 +125,15 @@
     OUTDATASET(raymond.HSM.disaster)
 
                                                                    +
-  HSENDCMD LIST SELECT (DUMPCLASS)                                 +
-    OUTDATASET(raymond.HSM.dumpclass)
   HSENDCMD LIST SELECT (DUMPSTATE                                  +    ERY, and
-    OUTDATASET(raymond.HSM.dumpstate)
+    OUTDATASET(raymond.HSM.dumpstat)
   HSENDCMD LIST SELECT (FASTREPLICATIONSTATE                       +    ERY, and
     OUTDATASET(raymond.HSM.fastrepl)
   HSENDCMD LIST SELECT (INCOMPLETERECOV                            +    ERY, and
     OUTDATASET(raymond.HSM.incomplet)
 //*Listing specific information about copy pools
-  HSENDCMD LIST NONPREFERREDFRVOLS)
+  HSENDCMD LIST NONPREFERREDFRVOLS)                                +
+    OUTDATASET(raymond.HSM.NONREFERR)
 
     SELECT (EFMT1, EFMT2, EEFMT2, EFMT3, EEFMT3, EFMT4, EEFMT4, ENCRYPTED, and
   Recording format
@@ -143,10 +142,10 @@
     SELECT (EMPTY, FULL, NOTFULL, ASSOCIATED, NOTASSOCIATED, ERRORALTERNATE, and
 //*Identifying tape volume capacity
   HSENDCMD LIST RECYCLETAKEAWAY)
-    OUTDATASET(raymond.HSM.recycleta)
+    OUTDATASET(raymond.HSM.recyclet)
 //*Listing volumes with data sets spanning four or more volumes
   HSENDCMD LIST SELECT (EXCESSIVEVOLUMES)
-    OUTDATASET(raymond.HSM.excessive)
+    OUTDATASET(raymond.HSM.excessiv)
 //*Listing expired dump volumes
   HSENDCMD LIST SELECT(EXPIRED)                                   +
   HSENDCMD LIST                                                   +
@@ -207,8 +206,3 @@
 //*Specifying the data set organization
   HSENDCMD LIST SELECT (VSAM)                                      +
     OUTDATASET('raymond.HSM.vsam')
-//*Specifying the location of output for the list
-    OUTDATASET, SYSOUT, and TERMINAL
-                                     OUTDATASET('raymond.HSM.BCDS.BACK')
-                                    OUTDATASET('raymond.HSM.PRIMARY')
-                                    OUTDATASET('raymond.HSM1°)
