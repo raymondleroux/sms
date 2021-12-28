@@ -34,10 +34,10 @@
   HSENDCMD LIST HOST
   HSENDCMD LIST HOST                OUTDATASET('raymond.HSM.Host')
 //*Listing migration volumes
-  HSENDCMD LIST MIGRATIONVOLUME     OUTDATASET('raymond.HSM.migr')       OLUME
-  HSENDCMD LIST MIGRATIONLEVEL1     OUTDATASET('raymond.HSM.mil1')       OLUME
-  HSENDCMD LIST MIGRATIONLEVEL2     OUTDATASET('raymond.HSM.mil1')       OLUME
-  HSENDCMD LIST VOLUME              OUTDATASET('raymond.HSM.volu')       OLUME
+  HSENDCMD LIST MIGRATIONVOLUME     OUTDATASET('raymond.HSM.migr')
+  HSENDCMD LIST MIGRATIONLEVEL1     OUTDATASET('raymond.HSM.mil1')
+  HSENDCMD LIST MIGRATIONLEVEL2     OUTDATASET('raymond.HSM.mil1')
+  HSENDCMD LIST VOLUME              OUTDATASET('raymond.HSM.volu')
 //*Listing primary volumes
   HSENDCMD LIST PRIMARYVOLUME       OUTDATASET('raymond.HSM.PRIMARY')
 //*Listing tape volume information from the OCDS
@@ -123,13 +123,11 @@
 //*Listing tape volumes that have disaster alternate volumes
   HSENDCMD LIST SELECT (DISASTERALTERNATEVOLUMES)                  +
     OUTDATASET(raymond.HSM.disaster)
-
-                                                                   +
-  HSENDCMD LIST SELECT (DUMPSTATE                                  +    ERY, and
+  HSENDCMD LIST SELECT (DUMPSTATE                                  +
     OUTDATASET(raymond.HSM.dumpstat)
-  HSENDCMD LIST SELECT (FASTREPLICATIONSTATE                       +    ERY, and
+  HSENDCMD LIST SELECT (FASTREPLICATIONSTATE                       +
     OUTDATASET(raymond.HSM.fastrepl)
-  HSENDCMD LIST SELECT (INCOMPLETERECOV                            +    ERY, and
+  HSENDCMD LIST SELECT (INCOMPLETERECOV                            +
     OUTDATASET(raymond.HSM.incomplet)
 //*Listing specific information about copy pools
   HSENDCMD LIST NONPREFERREDFRVOLS)                                +
@@ -147,8 +145,8 @@
   HSENDCMD LIST SELECT (EXCESSIVEVOLUMES)
     OUTDATASET(raymond.HSM.excessiv)
 //*Listing expired dump volumes
-  HSENDCMD LIST SELECT(EXPIRED)                                   +
-  HSENDCMD LIST                                                   +
+  HSENDCMD LIST SELECT(EXPIRED)                                    +
+  HSENDCMD LIST                                                    +
     OUTDATASET('raymond.HSM.expired')
 //*Listing all tape volumes that have incomplete data set information   ed in th
   HSENDCMD LIST SELECT(FAILEDCREATE)                               +
@@ -156,24 +154,24 @@
 //*Listing only those volumes that have failed recycle
   HSENDCMD LIST SELECT(FAILEDRECYCLE)                              +
     OUTDATASET('raymond.HSM.failedr')
-//*Listing tape volume library status                                   927
+//*Listing tape volume library status
 //*Listing all taSELECTu(LIBRARY andeNOLIBRARY)e data set information   ed in th
 //*Requesting specific information for volumes
-  HSENDCMD LIST                                                   +
-  HSENDCMD LIST SELECT (MIGRATIONLEVEL1)                          +     d BOTH)
+  HSENDCMD LIST                                                    +
+  HSENDCMD LIST SELECT (MIGRATIONLEVEL1)                           +
     OUTDATASET('raymond.HSM.ml1')
-  HSENDCMD LIST SELECT (mIGRATIONLEVEL2)                          +     d BOTH)
+  HSENDCMD LIST SELECT (mIGRATIONLEVEL2)                           +
     OUTDATASET('raymond.HSM.ml2')
-  HSENDCMD LIST SELECT (VOLUME(volser))                           +     d BOTH)
+  HSENDCMD LIST SELECT (VOLUME(volser))                            +
     OUTDATASET('raymond.HSM.volser')
-  HSENDCMD LIST SELECT (BACKUP)                                   +     d BOTH)
+  HSENDCMD LIST SELECT (BACKUP)                                    +
     OUTDATASET('raymond.HSM.backup')
-  HSENDCMD LIST SELECT (both)                                     +     d BOTH)
+  HSENDCMD LIST SELECT (both)                                      +
     OUTDATASET('raymond.HSM.both')
 //*Listing multiple-volume non-VSAM data sets from backup or dump VTOC py data
   HSENDCMD LIST SELECT (MULTIPLEVOLUME)                            +
     OUTDATASET('raymond.HSM.multipl')
-//*List dump volumes with no retention period                           29
+//*List dump volumes with no retention period
   HSENDCMD LIST SELECT (NORETENTIONLIMIT)                          +
     OUTDATASET('raymond.HSM.noreten')
 //*List overflow or non-overflow ML1 volumes
@@ -188,7 +186,6 @@
   HSENDCMD LIST
   HSENDCMD LIST SELECT (RESUMEAUDIT)                               +
     OUTDATASET('raymond.HSM.resumea')
-
                 AUDIT MEDIACONTROLS was interruped
     OUTDATASET('raymond.HSM.auditme')
 //*Specifying whether data sets have migrated to SDSP
