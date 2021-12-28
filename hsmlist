@@ -1,0 +1,214 @@
+//HSMLIST  JOB (ACCT),MVS,MSGCLASS=H,
+//      NOTIFY=&SYSUID.,CLASS=A,MSGLEVEL=(1,1),TIME=(0,10)
+//MYLIB JCLLIB ORDER=(&SYSUID..MVSG.MVS,
+//            SYS1.SACBCNTL)
+//STEP1    EXEC PGM=IKJEFT01
+//SYSTSPRT DD SYSOUT=*
+//SYSTSIN  DD *
+//*Listing the aggregate backup and recovery activity information
+  HSENDCMD LIST AGGREGATE(*)
+  HSENDCMD LIST AGGREGATE(*)        OUTDATASET('raymond.HSM.aggreg')
+//*Listing backup volume entries
+  HSENDCMD LIST BACKUPVOLUME
+  HSENDCMD LIST BACKUPVOLUME        OUTDATASET('raymond.HSM.backup')
+//*Listing information from cloud storage
+  HSENDCMD LIST CLOUD               OUTDATASET('raymond.HSM.      ')
+//*Listing information for each version of a copy pool
+  HSENDCMD LIST COPYPOOL            OUTDATASET('raymond.HSM.      ')
+//*Listing copy pool information for each volume in the Aspecified cop ool  back
+  HSENDCMD LIST COPYPOOLBACKUPSTORAGEGROUP                         +
+    OUTDATASET(raymond.HSM.copypo)
+//*Listing data set entries
+  HSENDCMD LIST DATASETNAME(raymond.MVSG.MVS) BOTH                  +
+    OUTDATASET(raymond.HSM.raymondm)
+  HSENDCMD LIST LEVEL(raymond)  BOTH                                +
+    OUTDATASET(raymond.HSM.raymond)                                  +
+//*Listing dump class profiles
+  HSENDCMD LIST DUMPCLASS           OUTDATASET(raymond.HSM.DUMPCLAS)
+//*Listing information about a single dump volume or a set of dump vo
+  HSENDCMD LIST DUMPVOLUME          OUTDATASET(raymond.HSM.DUMPvolu)
+//*Listing UNIX file entries
+  HSENDCMD LIST FILENAME and FILELEVEL
+                                    OUTDATASET('raymond.HSM.      ')
+//*Listing all control data sets serialized by the DFSMShsm host
+  HSENDCMD LIST HOST
+  HSENDCMD LIST HOST                OUTDATASET('raymond.HSM.Host')
+//*Listing migration volumes
+  HSENDCMD LIST MIGRATIONVOLUME     OUTDATASET('raymond.HSM.migr')       OLUME
+  HSENDCMD LIST MIGRATIONLEVEL1     OUTDATASET('raymond.HSM.mil1')       OLUME
+  HSENDCMD LIST MIGRATIONLEVEL2     OUTDATASET('raymond.HSM.mil1')       OLUME
+  HSENDCMD LIST VOLUME              OUTDATASET('raymond.HSM.volu')       OLUME
+//*Listing primary volumes
+  HSENDCMD LIST PRIMARYVOLUME       OUTDATASET('raymond.HSM.PRIMARY')
+//*Listing tape volume information from the OCDS
+  HSENDCMD LIST TAPETABLEOFCONTENTS OUTDATASET('raymond.HSM.tape')
+//*Listing tape volume information and data set names from the TTOC
+  HSENDCMD LIST TAPETABLEOFCONTENTS(*)                             +
+                                    OUTDATASET('raymond.HSM.tapetab')
+//*Listing user entries
+  HSENDCMD LIST USER                                               +
+                                    OUTDATASET('raymond.HSM.user')
+//*Determining existence of dumps or listing incremental backup contents
+  HSENDCMD LIST ALLDUMPS                                           +
+                                    OUTDATASET('raymond.HSM.alldumps')
+  HSENDCMD LIST BACKUPCONTENTS                                     +
+                                    OUTDATASET('raymond.HSM.backupco')
+//*Listing a specific type of copy pool information
+  HSENDCMD LIST ALLVOLS                                            +
+    OUTDATASET(raymond.HSM.allvols)
+  HSENDCMD LIST
+  HSENDCMD LIST DATASETS                                           +
+    OUTDATASET(raymond.HSM.datasets)
+  HSENDCMD LIST DUMPVOLS                                           +
+    OUTDATASET(raymond.HSM.dumpvols)
+  HSENDCMD LIST FASTREPLICATIONVOLS                                +
+    oUTDATASET(raymond.HSM.fastrepl)
+  HSENDCMD LIST NOVOLS
+    OUTDATASET(raymond.HSM.novols)
+//*Controlling the source of information
+  HSENDCMD LIST Bcds                OUTDATASET('raymond.HSM.BCDS.BACK')
+  HSENDCMD LIST BACKUPCONTROLDATASET                               +
+    OUTDATASET(raymond.HSM.backupco)
+  HSENDCMD LIST BACKUPCONTROLDATASET, MIGRATIONCONTROLDATASET, and BOTH
+  HSENDCMD LIST BACKUPCONTROLDATASET OUTDATASET('raymond.HSM.BCDS.BACK')
+  HSENDCMD LIST BACKUPCONTROLDATASET, MIGRATIONCONTROLDATASET, and BOTH
+//*Including or not including data set information
+  HSENDCMD LIST DATASETINFORMATION                                 +
+    OUTDATASET(raymond.HSM.novols)
+  HSENDCMD LIST NODATASETINFORMATION                               +
+    OUTDATASET(raymond.HSM.novols)
+//*Specifying the date or version of the aggregate group
+  HSENDCMD LIST DATE                                               +
+    OUTDATASET(raymond.HSM.novols)
+  HSENDCMD LIST VERSION                                            +
+    OUTDATASET(raymond.HSM.novols)
+//*Listing contents of a set of dump volumes
+  HSENDCMD LIST DUMPCONTENTS                                       +
+    OUTDATASET(raymond.HSM.novols)
+//*Listing entries for any data set that has migrated
+  HSENDCMD LIST INCLUDEPRIMARY                                     +
+    OUTDATASET(raymond.HSM.novols)
+//*Examine subdirectories of the specified UNIX file path
+  HSENDCMD LIST RECURSE                                            +
+    OUTDATASET(raymond.HSM.recurse)
+//*Requesting that the host ID field indicate no serialization
+  HSENDCMD LIST RESET                                              +
+    OUTDATASET(raymond.HSM.reset)
+//*Listing only those data set or volume entries that meet selection
+  HSENDCMD LIST SELECT
+//*Displaying information about active and retained backup copies
+  HSENDCMD LIST SELECT (ACTIVE)                                    +
+    OUTDATASET(raymond.HSM.active)
+  HSENDCMD LIST SELECT (RETAINDAYS)                                +
+    OUTDATASET(raymond.HSM.retainda)
+//*  Specifying data set use by age
+  HSENDCMD LIST SELECT (AGE)                                       +
+    OUTDATASET(raymond.HSM.age)
+//*Listing tape volumes that have alternate tape volumes
+  HSENDCMD LIST SELECT (ALTERNATEVOLUME)                           +
+    OUTDATASET(raymond.HSM.alternate)
+  HSENDCMD LIST SELECT (NOALTERNATEVOLUME)                         +
+    OUTDATASET(raymond.HSM.noalternat)
+//*Listing available dump volumes for dump output
+  HSENDCMD LIST SELECT (AVAILABLE)                                 +
+    OUTDATASET(raymond.HSM.avails)
+//*Identifying tape volumes by their ability to use available tape capa ty
+  HSENDCMD LIST SELECT (CAPACITYMODE)                              +
+    OUTDATASET(raymond.HSM.capacity)
+//*List volumes that contain spanning data sets
+  HSENDCMD LIST SELECT (CONNECTED)                                 +
+    OUTDATASET(raymond.HSM.connecte)
+  HSENDCMD LIST SELECT (NOTCONNECTED)                              +
+    OUTDATASET(raymond.HSM.noconnec)
+//*Listing tape volumes that have disaster alternate volumes
+  HSENDCMD LIST SELECT (DISASTERALTERNATEVOLUMES)                  +
+    OUTDATASET(raymond.HSM.disaster)
+
+                                                                   +
+  HSENDCMD LIST SELECT (DUMPCLASS)                                 +
+    OUTDATASET(raymond.HSM.dumpclass)
+  HSENDCMD LIST SELECT (DUMPSTATE                                  +    ERY, and
+    OUTDATASET(raymond.HSM.dumpstate)
+  HSENDCMD LIST SELECT (FASTREPLICATIONSTATE                       +    ERY, and
+    OUTDATASET(raymond.HSM.fastrepl)
+  HSENDCMD LIST SELECT (INCOMPLETERECOV                            +    ERY, and
+    OUTDATASET(raymond.HSM.incomplet)
+//*Listing specific information about copy pools
+  HSENDCMD LIST NONPREFERREDFRVOLS)
+
+    SELECT (EFMT1, EFMT2, EEFMT2, EFMT3, EEFMT3, EFMT4, EEFMT4, ENCRYPTED, and
+  Recording format
+    NOTENCRYPTED)
+
+    SELECT (EMPTY, FULL, NOTFULL, ASSOCIATED, NOTASSOCIATED, ERRORALTERNATE, and
+//*Identifying tape volume capacity
+  HSENDCMD LIST RECYCLETAKEAWAY)
+    OUTDATASET(raymond.HSM.recycleta)
+//*Listing volumes with data sets spanning four or more volumes
+  HSENDCMD LIST SELECT (EXCESSIVEVOLUMES)
+    OUTDATASET(raymond.HSM.excessive)
+//*Listing expired dump volumes
+  HSENDCMD LIST SELECT(EXPIRED)                                   +
+  HSENDCMD LIST                                                   +
+    OUTDATASET('raymond.HSM.expired')
+//*Listing all tape volumes that have incomplete data set information   ed in th
+  HSENDCMD LIST SELECT(FAILEDCREATE)                               +
+    OUTDATASET('raymond.HSM.failedc')
+//*Listing only those volumes that have failed recycle
+  HSENDCMD LIST SELECT(FAILEDRECYCLE)                              +
+    OUTDATASET('raymond.HSM.failedr')
+//*Listing tape volume library status                                   927
+//*Listing all taSELECTu(LIBRARY andeNOLIBRARY)e data set information   ed in th
+//*Requesting specific information for volumes
+  HSENDCMD LIST                                                   +
+  HSENDCMD LIST SELECT (MIGRATIONLEVEL1)                          +     d BOTH)
+    OUTDATASET('raymond.HSM.ml1')
+  HSENDCMD LIST SELECT (mIGRATIONLEVEL2)                          +     d BOTH)
+    OUTDATASET('raymond.HSM.ml2')
+  HSENDCMD LIST SELECT (VOLUME(volser))                           +     d BOTH)
+    OUTDATASET('raymond.HSM.volser')
+  HSENDCMD LIST SELECT (BACKUP)                                   +     d BOTH)
+    OUTDATASET('raymond.HSM.backup')
+  HSENDCMD LIST SELECT (both)                                     +     d BOTH)
+    OUTDATASET('raymond.HSM.both')
+//*Listing multiple-volume non-VSAM data sets from backup or dump VTOC py data
+  HSENDCMD LIST SELECT (MULTIPLEVOLUME)                            +
+    OUTDATASET('raymond.HSM.multipl')
+//*List dump volumes with no retention period                           29
+  HSENDCMD LIST SELECT (NORETENTIONLIMIT)                          +
+    OUTDATASET('raymond.HSM.noreten')
+//*List overflow or non-overflow ML1 volumes
+  HSENDCMD LIST SELECT (OVERFLOW)                                  +
+    OUTDATASET('raymond.HSM.overflo')
+  HSENDCMD LIST SELECT (NOOVERFLOW)                                +
+    OUTDATASET('raymond.HSM.nooverf')
+//*Listing ML2 volumes taken away by recall or ABACKUP functions
+  HSENDCMD LIST SELECT (RECALLTAKEAWAY)                            +
+    OUTDATASET('raymond.HSM.recallt')
+//*Listing tape volumes that are capable of being resumed after
+  HSENDCMD LIST
+  HSENDCMD LIST SELECT (RESUMEAUDIT)                               +
+    OUTDATASET('raymond.HSM.resumea')
+
+                AUDIT MEDIACONTROLS was interruped
+    OUTDATASET('raymond.HSM.auditme')
+//*Specifying whether data sets have migrated to SDSP
+    OUTDATASET('raymond.HSM.sdsp')
+  HSENDCMD LIST SELECT (SMALLDATASETPACKING)                       +
+    OUTDATASET('raymond.HSM.small')
+  HSENDCMD LIST SELECT (NOSMALLDATASETPACKING)                     +
+    OUTDATASET('raymond.HSM.nosmall')
+//*Listing dump volumes with invalid contents
+  HSENDCMD LIST SELECT (UNAVAILABLE)                               +
+    OUTDATASET('raymond.HSM.unavail')
+//*Listing dump volumes that have not reached their expiration date
+  HSENDCMD LIST SELECT(UNEXPIRED)                                  +
+    OUTDATASET('raymond.HSM.unexpir')
+//*Specifying the data set organization
+  HSENDCMD LIST SELECT (VSAM)                                      +
+    OUTDATASET('raymond.HSM.vsam')
+//*Specifying the location of output for the list
+    OUTDATASET, SYSOUT, and TERMINAL
+                                     OUTDATASET('raymond.HSM.BCDS.BACK')
+                                    OUTDATASET('raymond.HSM.PRIMARY')
+                                    OUTDATASET('raymond.HSM1°)
